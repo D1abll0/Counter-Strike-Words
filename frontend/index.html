@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="./styles/cs-ui.css">
+	<link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+	
+	<template id="template-board-cell">
+		<div class="cs-ui-container cell"></div>
+	</template>
+
+	<template id="template-answer-cell">
+		<div class="cell"></div>
+	</template>
+
+	<template id="template-about">
+		<div class="about-wrapper">
+			<div class="content">
+				<h1>Counter Strike Words</h1>
+				<p class="date"></p>
+				<p class="issue_number"></p>
+			</div>
+			<a href="" target="_blank" class="suggest">Suggest a New Word</a>
+		</div>
+	</template>
+
+	<template id="template-user">
+		<div class="user-score">
+			<img class="avatar" src="">
+			<span class="name"></span>
+			<span class="time"></span>
+			<span class="result"></span>
+		</div>
+	</template>
+
+	<template id="template-players">
+		<div class="players-wrapper">
+			<div id="players">
+				<div class="header">
+					<span class="avatar"></span>
+					<span class="name">Player name</span>
+					<span class="time">Time</span>
+					<span class="result">Score</span>
+					<div class="cs-ui cs-ui-button update">
+						<div class="cs-ui-icon"></div>
+					</div>
+				</div>
+				<div class="body"></div>
+			</div>
+			<div class="cs-ui cs-ui-scroll">
+				<div class="cs-ui-scroll-btn-top cs-ui-button"><div class="cs-ui-icon"></div></div>
+				<div class="cs-ui-scroll-track track"></div>
+				<div class="cs-ui-scroll-btn-bottom cs-ui-button"><div class="cs-ui-icon"></div></div>
+				<div class="cs-ui-scroll-thumb thumb"></div>
+			</div>
+		</div>
+	</template>
+
+	<template id="template-answers">
+		<div id="answers-window" class="cs-ui cs-ui-window cs-ui-window-draggable">
+			<div class="cs-ui cs-ui-window-header dragger">
+				<div class="cs-ui-icon icon"></div>
+				<div class="cs-ui cs-ui-window-title">Answers</div>
+			</div>
+			<div class="cs-ui cs-ui-window-content cs-ui-container"></div>
+		</div>
+	</template>
+
+	<template id="template-keyboard-cyrillic">
+		<div class="game-wrapper">
+			<div id="keyboard" class="cyrillic" data-max-count="13">
+				<div class="row">
+					<div class="key cs-ui-button" keycode=192>Ё</div>
+					<div class="key cs-ui-button" keycode=81>Й</div>
+					<div class="key cs-ui-button" keycode=87>Ц</div>
+					<div class="key cs-ui-button" keycode=69>У</div>
+					<div class="key cs-ui-button" keycode=82>К</div>
+					<div class="key cs-ui-button" keycode=84>Е</div>
+					<div class="key cs-ui-button" keycode=89>Н</div>
+					<div class="key cs-ui-button" keycode=85>Г</div>
+					<div class="key cs-ui-button" keycode=73>Ш</div>
+					<div class="key cs-ui-button" keycode=79>Щ</div>
+					<div class="key cs-ui-button" keycode=80>З</div>
+					<div class="key cs-ui-button" keycode=219>Х</div>
+					<div class="key cs-ui-button" keycode=221>Ъ</div>
+				</div>
+				<div class="row">
+					<div class="key cs-ui-button" keycode=65>Ф</div>
+					<div class="key cs-ui-button" keycode=83>Ы</div>
+					<div class="key cs-ui-button" keycode=68>В</div>
+					<div class="key cs-ui-button" keycode=70>А</div>
+					<div class="key cs-ui-button" keycode=71>П</div>
+					<div class="key cs-ui-button" keycode=72>Р</div>
+					<div class="key cs-ui-button" keycode=74>О</div>
+					<div class="key cs-ui-button" keycode=75>Л</div>
+					<div class="key cs-ui-button" keycode=76>Д</div>
+					<div class="key cs-ui-button" keycode=186>Ж</div>
+					<div class="key cs-ui-button" keycode=222>Э</div>
+				</div>
+				<div class="row">
+					<div class="key cs-ui-button special-key" keycode=13>ВВОД</div>
+					<div class="key cs-ui-button" keycode=90>Я</div>
+					<div class="key cs-ui-button" keycode=88>Ч</div>
+					<div class="key cs-ui-button" keycode=67>С</div>
+					<div class="key cs-ui-button" keycode=86>М</div>
+					<div class="key cs-ui-button" keycode=66>И</div>
+					<div class="key cs-ui-button" keycode=78>Т</div>
+					<div class="key cs-ui-button" keycode=77>Ь</div>
+					<div class="key cs-ui-button" keycode=188>Б</div>
+					<div class="key cs-ui-button" keycode=190>Ю</div>
+					<div class="key cs-ui-button special-key" keycode=8>СТЕРЕТЬ</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="template-keyboard-latin">
+		<div class="game-wrapper">
+			<div id="keyboard" class="latin" data-max-count="11">
+				<div class="row">
+					<div class="key cs-ui-button" keycode=81>Q</div>
+					<div class="key cs-ui-button" keycode=87>W</div>
+					<div class="key cs-ui-button" keycode=69>E</div>
+					<div class="key cs-ui-button" keycode=82>R</div>
+					<div class="key cs-ui-button" keycode=84>T</div>
+					<div class="key cs-ui-button" keycode=89>Y</div>
+					<div class="key cs-ui-button" keycode=85>U</div>
+					<div class="key cs-ui-button" keycode=73>I</div>
+					<div class="key cs-ui-button" keycode=79>O</div>
+					<div class="key cs-ui-button" keycode=80>P</div>
+				</div>
+				<div class="row">
+					<div class="key cs-ui-button" keycode=65>A</div>
+					<div class="key cs-ui-button" keycode=83>S</div>
+					<div class="key cs-ui-button" keycode=68>D</div>
+					<div class="key cs-ui-button" keycode=70>F</div>
+					<div class="key cs-ui-button" keycode=71>G</div>
+					<div class="key cs-ui-button" keycode=72>H</div>
+					<div class="key cs-ui-button" keycode=74>J</div>
+					<div class="key cs-ui-button" keycode=75>K</div>
+					<div class="key cs-ui-button" keycode=76>L</div>
+				</div>
+				<div class="row">
+					<div class="key cs-ui-button special-key key-enter" keycode=13>ENTER</div>
+					<div class="key cs-ui-button" keycode=90>Z</div>
+					<div class="key cs-ui-button" keycode=88>X</div>
+					<div class="key cs-ui-button" keycode=67>C</div>
+					<div class="key cs-ui-button" keycode=86>V</div>
+					<div class="key cs-ui-button" keycode=66>B</div>
+					<div class="key cs-ui-button" keycode=78>N</div>
+					<div class="key cs-ui-button" keycode=77>M</div>
+					<div class="key cs-ui-button special-key key-remove" keycode=8>REMOVE</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="template-board">
+		<div class="game-wrapper">
+			<div id="board"></div>
+		</div>
+	</template>
+
+	<template id="template-options">
+		<div class="cs-ui cs-ui-window cs-ui-window-draggable options-window">
+			<div class="cs-ui cs-ui-window-header dragger">
+				<div class="cs-ui-icon icon"></div>
+				<div class="cs-ui cs-ui-window-title">Options</div>
+				<div class="btns">
+					<div class="cs-ui cs-ui-button minimize disabled">
+						<div class="cs-ui-icon"></div>
+					</div>
+					<div class="cs-ui cs-ui-button close">
+						<div class="cs-ui-icon"></div>
+					</div>
+				</div>
+			</div>
+			<div class="cs-ui cs-ui-window-content">
+				<div class="cs-ui cs-ui-tabs">
+					<div class="cs-ui-tab tab-about">About</div>
+					<div class="cs-ui-tab tab-keyboard">Keyboard</div>
+					<div class="cs-ui-tab tab-board">Board</div>
+					<div class="cs-ui-tab tab-audio cs-ui-status-blocked">Audio</div>
+					<div class="cs-ui-tab tab-players">Players</div>
+					<div class="cs-ui-tab tab-misc cs-ui-status-blocked">Misc</div>
+				</div>
+				<div class="cs-ui cs-ui-tab-page"></div>
+			</div>
+			<div class="cs-ui-window-resize"></div>
+		</div>
+	</template>
+
+	<template id="template-quit">
+		<div id="quit-window" class="cs-ui cs-ui-window">
+			<div class="cs-ui cs-ui-window-header">
+				<div class="cs-ui-icon icon"></div>
+				<div class="cs-ui cs-ui-window-title">Quit</div>
+			</div>
+			<div class="cs-ui cs-ui-window-content">
+				<p>Do you wish to stop playing now?</p>
+				<div class="cs-ui-window-actions">
+					<div class="cs-ui cs-ui-button btn-quit">Quit game</div>
+					<div class="cs-ui cs-ui-button btn-cancel">Cancel</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="template-disconnected">
+		<div id="disconnected-window" class="cs-ui cs-ui-window">
+			<div class="cs-ui cs-ui-window-header">
+				<div class="cs-ui-icon icon"></div>
+				<div class="cs-ui cs-ui-window-title">Disconnected</div>
+			</div>
+			<div class="cs-ui cs-ui-window-content">
+				<div class="cs-ui-window-actions">
+					<p class="status"></p>
+					<div class="cs-ui cs-ui-button">Cancel</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<template id="template-loading">
+		<div id="loading-window" class="cs-ui cs-ui-window">
+			<div class="cs-ui cs-ui-window-header">
+				<div class="cs-ui-icon icon"></div>
+				<div class="cs-ui cs-ui-window-title">Loading...</div>
+			</div>
+			<div class="cs-ui cs-ui-window-content">
+				<p class="status"></p>
+				<div class="cs-ui-window-actions">
+					<div class="cs-ui cs-ui-container cs-ui-progress">
+						<div class="cs-ui cs-ui-progress-bar"></div>
+					</div>
+					<div class="cs-ui cs-ui-button">Cancel</div>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<div id="notification">
+		<div class="icon-wrapper">
+			<div class="icon"></div>
+		</div>
+		<div class="content">
+			<p class="header"></p>
+			<p class="body"></p>
+		</div>
+	</div>
+
+	<div id="option-btns">
+		<div class="option option-keyboard" style="--i: 5;">Keyboard</div>
+		<div class="option option-board" style="--i: 4;">Board</div>
+		<div class="option option-players" style="--i: 3;">Players</div>
+		<div class="option option-options" style="--i: 2;">Options</div>
+		<div class="option option-quit" style="--i: 1;">Quit</div>
+		<div class="mainlogo"></div>
+	</div>
+
+	<div id="app"></div>
+
+	<script type="module" src="./src/main.js"></script>
+</body>
+</html>

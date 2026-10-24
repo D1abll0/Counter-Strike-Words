@@ -1,0 +1,17 @@
+{
+	"name": "counter-strike-words",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build"
+	},
+	"dependencies": {
+		"@discord/embedded-app-sdk": "^1.9.0",
+		"wrangler": "^4.152.0"
+	},
+	"devDependencies": {
+		"vite": "^5.4.0"
+	}
+}

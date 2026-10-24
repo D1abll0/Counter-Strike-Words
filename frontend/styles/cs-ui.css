@@ -1,0 +1,236 @@
+:root
+{
+	--color1: #4c5844;
+	--color2: #3e4637;
+	--color3: #5a6a50;
+	--color4: #c5b555;
+	--color5: #fff;
+	--color6: #ffffff52;
+	--color7: #303030;
+	--color8: #282e22;
+	--color9: #8e8923;
+
+	--bg-color-1: var(--color1);
+	--bg-color-2: var(--color2);
+	--bg-color-3: var(--color3);
+	--bg-color-4: var(--color4);
+	--bg-color-5: var(--color9);
+
+	--text-color-major: var(--color5);
+	--text-color-minor: var(--color6);
+	--text-color-selected: var(--color4);
+	--text-color-disabled: var(--color7);
+
+	--text-shadow: 1px 1px var(--text-color-minor);
+
+	--border-color-light: var(--color6);
+	--border-color-dark: var(--color8);
+
+	--font-size-1: 16px;
+}
+
+.cs-ui
+{
+	user-select: none;
+}
+
+.cs-ui-window, .cs-ui-button, .cs-ui-progress, .cs-ui-tab, .cs-ui-tab-page, .cs-ui-scroll, .cs-ui-scroll-thumb
+{
+	border-top: 1px solid var(--border-color-light);
+	border-left: 1px solid var(--border-color-light);
+	border-right: 1px solid var(--border-color-dark);
+	border-bottom: 1px solid var(--border-color-dark);
+}
+
+.cs-ui-container, .cs-ui-button:not(.disabled):hover, .cs-ui-tab-page-content
+{
+	border-top: 1px solid var(--border-color-dark);
+	border-left: 1px solid var(--border-color-dark);
+	border-right: 1px solid var(--border-color-light);
+	border-bottom: 1px solid var(--border-color-light);
+}
+
+.cs-ui-window-draggable, .cs-ui-window-resize { touch-action: none; }
+
+.cs-ui-container { background-color: var(--bg-color-2); }
+
+.cs-ui-window
+{
+	min-width: 500px;
+	width: 500px;
+	aspect-ratio: 3.45;
+	padding: 7px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	background-color: var(--bg-color-1);
+}
+
+.cs-ui-window-header
+{
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.cs-ui-icon
+{
+	width: 18px;
+	aspect-ratio: 1;
+	
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	pointer-events: none;
+}
+
+.cs-ui-window-title
+{
+	font-size: var(--font-size-1);
+	color: var(--text-color-major);
+}
+
+.cs-ui-window-content
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-inline: 25px;
+	flex: 1;
+}
+
+.cs-ui-window-actions
+{
+	display: flex;
+	gap: 25px;
+	padding-top: 15px;
+}
+
+.cs-ui-progress
+{
+	--inner-max-progress-items-count: var(--outer-max-progress-items-count, 0);
+	--inner-progress-items-count: var(--outer-progress-items-count, 0);
+
+	flex: 1;
+	height: 30px;
+	padding: 5px 3px;
+	align-content: center;
+	background: var(--bg-color-2);
+}
+
+.cs-ui-progress-bar
+{
+	--progress-item-size: calc(100% / (var(--inner-max-progress-items-count) * 1.5 - 0.5));
+	--progress-item-gap: calc(var(--progress-item-size) / 2);
+	--step: calc(100% / var(--inner-max-progress-items-count));
+	--clip-right: calc(100% - var(--inner-progress-items-count) * var(--step) + var(--progress-item-gap) * (1 - var(--inner-progress-items-count) / var(--inner-max-progress-items-count)));
+	display: block;
+	height: 100%;
+	width: 100%;
+	background: repeating-linear-gradient(to right, var(--bg-color-4) 0 var(--progress-item-size), transparent var(--progress-item-size) calc(var(--progress-item-size) + var(--progress-item-gap)));
+	clip-path: inset(0 var(--clip-right) 0 0);
+}
+
+.cs-ui-button
+{
+	width: 100px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px;
+	font-size: var(--font-size-1);
+	color: var(--text-color-major);
+}
+
+.cs-ui-tabs
+{
+	display: flex;
+	align-items: end;
+	position: relative;
+	z-index: 1;
+}
+
+.cs-ui-tab
+{
+	width: 80px;
+	height: 30px;
+	padding: 4px;
+	font-size: var(--font-size-1);
+	color: var(--text-color-major);
+	border-bottom-color: transparent;
+}
+
+.cs-ui-tab.cs-ui-status-active
+{
+	height: 32px;
+	padding-top: 6px;
+	border-bottom: 2px solid var(--bg-color-1);
+	color: var(--text-color-selected);
+}
+
+.cs-ui-tab.cs-ui-status-blocked
+{
+	color: var(--text-color-disabled);
+	text-shadow: var(--text-shadow);
+}
+
+.cs-ui-tab-page
+{
+	display: flex;
+	margin-top: -1px;
+	padding: 10px 15px;
+	overflow: hidden;
+	flex: 1;
+}
+
+.cs-ui-tab-page-content
+{
+	background-color: var(--bg-color-2);
+}
+
+
+.cs-ui-scroll
+{
+	position: relative;
+	width: 22px;
+	display: flex;
+	flex-direction: column;
+	flex-shrink: 0;
+}
+
+.cs-ui-scroll-track
+{
+	width: 22px;
+	min-height: 0;
+	flex: 1;
+	overflow: hidden;
+	background-color: var(--bg-color-3);
+}
+
+.cs-ui-scroll-thumb
+{
+	--offsetY: 0px;
+	position: absolute;
+	top: calc(22px + var(--offsetY));
+	width: 22px;
+	min-height: 22px;
+	background-color: var(--bg-color-1);
+}
+
+.cs-ui-scroll-btn-top, .cs-ui-scroll-btn-bottom
+{
+	width: 22px;
+	height: 22px;
+	background-color: var(--bg-color-1);
+}
+
+.cs-ui-window-resize
+{
+	width: 13px;
+	aspect-ratio: 1;
+	margin-left: auto;
+	background: var(--bg-color-2);
+	cursor: nw-resize;
+}
